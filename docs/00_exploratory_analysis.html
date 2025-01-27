@@ -545,15 +545,15 @@ project makes it easier to run your code on other machines.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomdimadatasciencepreservetree3370784a455aff4e56809d36a3390bb9efe0eb63targetblank3370784a">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomdimadatasciencepreservetreecd5782744f64854eba77c6b4add0ed0d0d141d10targetblankcd57827a">
 <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span> <strong>Repository version:</strong>
-<a href="https://github.com/dimadatascience/preserve/tree/3370784a455aff4e56809d36a3390bb9efe0eb63" target="_blank">3370784</a>
+<a href="https://github.com/dimadatascience/preserve/tree/cd5782744f64854eba77c6b4add0ed0d0d141d10" target="_blank">cd57827</a>
 </a>
 </p>
 </div>
 <div
-id="strongRepositoryversionstrongahrefhttpsgithubcomdimadatasciencepreservetree3370784a455aff4e56809d36a3390bb9efe0eb63targetblank3370784a"
+id="strongRepositoryversionstrongahrefhttpsgithubcomdimadatasciencepreservetreecd5782744f64854eba77c6b4add0ed0d0d141d10targetblankcd57827a"
 class="panel-collapse collapse">
 <div class="panel-body">
 <p>
@@ -563,7 +563,7 @@ reproducibility.
 </p>
 <p>
 The results in this page were generated with repository version
-<a href="https://github.com/dimadatascience/preserve/tree/3370784a455aff4e56809d36a3390bb9efe0eb63" target="_blank">3370784</a>.
+<a href="https://github.com/dimadatascience/preserve/tree/cd5782744f64854eba77c6b4add0ed0d0d141d10" target="_blank">cd57827</a>.
 See the <em>Past versions</em> tab to see a history of the changes made
 to the R Markdown and HTML files.
 </p>
@@ -632,6 +632,40 @@ Message
 <tbody>
 <tr>
 <td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/dimadatascience/preserve/blob/cd5782744f64854eba77c6b4add0ed0d0d141d10/analysis/00_exploratory_analysis.Rmd" target="_blank">cd57827</a>
+</td>
+<td>
+Yinxiu Zhan
+</td>
+<td>
+2025-01-27
+</td>
+<td>
+Republish
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/dimadatascience/preserve/7a1f38bb2e218d707b58d6858af1bfc032036961/docs/00_exploratory_analysis.html" target="_blank">7a1f38b</a>
+</td>
+<td>
+Yinxiu Zhan
+</td>
+<td>
+2025-01-27
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
 html
 </td>
 <td>
@@ -687,24 +721,6 @@ analysis and filtering criteria:</p>
 minimum of 3 samples)</li>
 <li>min reads:</li>
 </ul>
-<pre class="r"><code>rdata_file=&quot;/hpcnfs/scratch/DIMA/zhan/chiocca/micaela/230913_rnaseq/results/star_salmon/deseq2_qc/deseq2.dds.RData&quot;
-samples_info_file = &quot;/hpcnfs/scratch/DIMA/zhan/chiocca/micaela/230913_rnaseq/samples_files/samples_info.txt&quot;
-qvalue=0.1
-logfc=log2(1)
-min_sample = 3 # minimum number of samples where the gene needs to have at least 1 read
-signature = c(&quot;PTGS2&quot;, &quot;PLAC8&quot;, &quot;RNF138&quot;, &quot;OGFRL1&quot;, &quot;LRRD1&quot;, &quot;AL161418.1&quot;) # genes in signature from https://academic.oup.com/jnci/article/113/4/471/5872531
-
-signature_hotscore = list(&quot;CCR2&quot;, &quot;CCL19&quot;,  &quot;CCR4&quot;, &quot;CCR5&quot;, &quot;CD27&quot;, &quot;CD40LG&quot;, &quot;CD8A&quot;, &quot;CXCL10&quot;, &quot;CXCL11&quot;, &quot;CXCL13&quot;, &quot;CXCL9&quot;, &quot;CXCR3&quot;, &quot;CXCR6&quot;, &quot;FASLG&quot;, &quot;FGL2&quot;, &quot;GZMA&quot;, &quot;GZMH&quot;, &quot;IDO1&quot;, &quot;IFNG&quot;, &quot;IRF8&quot;, &quot;LAG3&quot;, &quot;LYZ&quot;, &quot;MS4A1&quot;, &quot;PDCD1&quot;, &quot;TBX21&quot;, &quot;TLR7&quot;, &quot;TLR8&quot;) # from https://pubmed.ncbi.nlm.nih.gov/36038492/
-
-pattern_remove_gene = &quot;^TRNA&quot; # remove genes strating with TRNA
-contrasts = c(
-  &quot;COMPLETE.RESPONSE_VS_PROGRESSIVE.DISEASE&quot;,
-  &quot;COMPLETE.RESPONSE_VS_STABLE.DISEASE&quot;,
-  &quot;COMPLETE.RESPONSE_VS_PARTIAL.RESPONSE&quot;,
-  &quot;PARTIAL.RESPONSE_VS_PROGRESSIVE.DISEASE&quot;,
-  &quot;PARTIAL.RESPONSE_VS_STABLE.DISEASE&quot;,
-  &quot;PROGRESSIVE.DISEASE_VS_STABLE.DISEASE&quot;
-) # comparison to analyse</code></pre>
 </div>
 <div id="quality-control" class="section level1">
 <h1>Quality control</h1>
@@ -733,126 +749,15 @@ samples.</p>
 While clear separation between functional and non-functional samples is
 not evident, there is a slight shift toward the right for non-functional
 samples, suggesting potential trends worth further exploration.</p>
-<p><img src="figure/00_exploratory_analysis.Rmd/unnamed-chunk-3-1.png" width="1800" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-3-1">
-Past versions of unnamed-chunk-3-1.png
-</button>
-</p>
-<div id="fig-unnamed-chunk-3-1" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/dimadatascience/preserve/blob/ad5aaabe58424d613a19513e0028187020224d67/docs/figure/00_exploratory_analysis.Rmd/unnamed-chunk-3-1.png" target="_blank">ad5aaab</a>
-</td>
-<td>
-Yinxiu Zhan
-</td>
-<td>
-2025-01-27
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
+<p><img src="figure/00_exploratory_analysis.Rmd/pca_functionality-1.png" width="1800" style="display: block; margin: auto;" /></p>
 <p>The PCA plot below shows samples colored by response status.
 Unfortunately, there is no clear separation between responders and
 non-responders, indicating that PCA alone is insufficient to distinguish
 response groups in this dataset.</p>
-<p><img src="figure/00_exploratory_analysis.Rmd/unnamed-chunk-4-1.png" width="1800" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-4-1">
-Past versions of unnamed-chunk-4-1.png
-</button>
-</p>
-<div id="fig-unnamed-chunk-4-1" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/dimadatascience/preserve/blob/ad5aaabe58424d613a19513e0028187020224d67/docs/figure/00_exploratory_analysis.Rmd/unnamed-chunk-4-1.png" target="_blank">ad5aaab</a>
-</td>
-<td>
-Yinxiu Zhan
-</td>
-<td>
-2025-01-27
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
+<p><img src="figure/00_exploratory_analysis.Rmd/pca_response-1.png" width="1800" style="display: block; margin: auto;" /></p>
 <p>Below is the heatmap displaying the z-scores of gene expression.
 Genes have been clustered based on functionality and response.</p>
-<p><img src="figure/00_exploratory_analysis.Rmd/unnamed-chunk-6-1.png" width="1800" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-6-1">
-Past versions of unnamed-chunk-6-1.png
-</button>
-</p>
-<div id="fig-unnamed-chunk-6-1" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/dimadatascience/preserve/blob/ad5aaabe58424d613a19513e0028187020224d67/docs/figure/00_exploratory_analysis.Rmd/unnamed-chunk-6-1.png" target="_blank">ad5aaab</a>
-</td>
-<td>
-Yinxiu Zhan
-</td>
-<td>
-2025-01-27
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
+<p><img src="figure/00_exploratory_analysis.Rmd/heatmap_functionality_response-1.png" width="3000" style="display: block; margin: auto;" /></p>
 <p>The transcriptomic profiles of responsive and resistant samples
 appear to be highly similar, with minimal differences observed. Below is
 a table highlighting the few differentially expressed genes identified
@@ -870,44 +775,7 @@ href="https://www.ensembl.org/Homo_sapiens/Transcript/Idhistory?t=ENST0000064028
 corresponding boxplot for visualization.</p>
 <div class="datatables html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-02880d8cbf9369760f4f" style="width:100%;height:auto;"></div>
 <script type="application/json" data-for="htmlwidget-02880d8cbf9369760f4f">{"x":{"filter":"none","vertical":false,"extensions":["Buttons"],"data":[[1.702638865161513,645.0993687744965,81.95422371157798,220.5877001304434,144.0652860293184,1.702638865161513,645.0993687744965,81.95422371157798,220.5877001304434,144.0652860293184,1.702638865161513,645.0993687744965,81.95422371157798,220.5877001304434,144.0652860293184,1.702638865161513,645.0993687744965,81.95422371157798,220.5877001304434,144.0652860293184,1.702638865161513,645.0993687744965,81.95422371157798,220.5877001304434,144.0652860293184,1.702638865161513,645.0993687744965,81.95422371157798,220.5877001304434,144.0652860293184],[0.8226078686253554,-0.2742056683356807,-0.1860780166102947,-0.07927304172979491,-0.1551784064138639,1.79703828289641,-0.4604724353993499,1.179364992704961,-0.8670013713661208,0.3218294743083219,0.4911793194972431,0.233225610351422,0.307927909548909,0.2124320970252613,-0.1058449734732568,0.974430414271055,-0.1862667670636692,1.365443009315255,-0.7877283296363259,0.4770078807221858,-0.3314285491281123,0.5074312786871026,0.4940059261592038,0.2917051387550562,0.04933343294060717,-1.305858963399167,0.6936980457507719,-0.8714370831560514,1.079433468391382,-0.4276744477815787],[0.4176468419454824,0.1410323388036415,0.3340100808057171,0.2588288726186991,0.1101921951593506,1.179854242476609,0.3622060647256228,0.8614701102976783,0.6646327998375171,0.2829258267445474,0.6295586329438074,0.2105182011820209,0.4988244197828063,0.3862231713385828,0.164618286195212,1.154914790286082,0.3525406007833384,0.8386572659059111,0.6469204279358141,0.2751917986669239,0.5814772122151318,0.1934154860638472,0.4583022061451376,0.3548768332065368,0.1509393289417365,1.247294457539551,0.3856328162260332,0.9168473802236339,0.7075888691088702,0.3011434655138537],[1.969625496971278,-1.944275126270547,-0.5571029956982955,-0.3062758838600598,-1.408252246808026,1.52310193768027,-1.271299628149974,1.369014407589179,-1.304481770352105,1.137504758796377,0.7801963054664113,1.107864351119775,0.6173072073796714,0.5500242160225869,-0.6429721504191876,0.8437249418458659,-0.5283555047270811,1.628129946314022,-1.217658765467957,1.733365176698192,-0.5699768489044282,2.623529733909712,1.077904316268465,0.8219898045170082,0.3268428002595014,-1.04695323185765,1.798856364299066,-0.9504712583063648,1.525509396085906,-1.420168447128082],[0.048881307281242,0.05186228250825654,0.5774570609038865,0.7593945993887005,0.159056390385247,0.1277332041586098,0.2036220745895526,0.170994771326492,0.1920693710645361,0.2553273363570117,0.4352753366456837,0.2679204034122377,0.5370321138102345,0.5823027642150247,0.5202421709299527,0.398823126601943,0.5972526141613669,0.1034973349512151,0.2233536727935207,0.08303078297633823,0.5686934003950229,0.008702384873242191,0.2810764590200251,0.4110826995604667,0.7437867857213609,0.2951211487825984,0.07204140461969903,0.3418728513379125,0.1271320917515302,0.1555586471985699],[0.2082926421935241,0.2161571256678478,0.7783037651478104,0.8860710487401606,0.39863064357176,0.9763638495551552,0.999766571120844,0.9932812108909644,0.9972521254712992,0.9998391489957638,0.8591693147793844,0.7682648272760375,0.8939430448847061,0.913937903442485,0.8901046974398643,0.998540900807836,0.998540900807836,0.998540900807836,0.998540900807836,0.998540900807836,0.8972516654834096,0.2316664217600513,0.7564851034013185,0.8321907738446673,0.9447445780371183,0.9997924208670729,0.9997924208670729,0.9997924208670729,0.9997924208670729,0.9997924208670729],["COMPLETE.RESPONSE_VS_PARTIAL.RESPONSE","COMPLETE.RESPONSE_VS_PARTIAL.RESPONSE","COMPLETE.RESPONSE_VS_PARTIAL.RESPONSE","COMPLETE.RESPONSE_VS_PARTIAL.RESPONSE","COMPLETE.RESPONSE_VS_PARTIAL.RESPONSE","COMPLETE.RESPONSE_VS_PROGRESSIVE.DISEASE","COMPLETE.RESPONSE_VS_PROGRESSIVE.DISEASE","COMPLETE.RESPONSE_VS_PROGRESSIVE.DISEASE","COMPLETE.RESPONSE_VS_PROGRESSIVE.DISEASE","COMPLETE.RESPONSE_VS_PROGRESSIVE.DISEASE","COMPLETE.RESPONSE_VS_STABLE.DISEASE","COMPLETE.RESPONSE_VS_STABLE.DISEASE","COMPLETE.RESPONSE_VS_STABLE.DISEASE","COMPLETE.RESPONSE_VS_STABLE.DISEASE","COMPLETE.RESPONSE_VS_STABLE.DISEASE","PARTIAL.RESPONSE_VS_PROGRESSIVE.DISEASE","PARTIAL.RESPONSE_VS_PROGRESSIVE.DISEASE","PARTIAL.RESPONSE_VS_PROGRESSIVE.DISEASE","PARTIAL.RESPONSE_VS_PROGRESSIVE.DISEASE","PARTIAL.RESPONSE_VS_PROGRESSIVE.DISEASE","PARTIAL.RESPONSE_VS_STABLE.DISEASE","PARTIAL.RESPONSE_VS_STABLE.DISEASE","PARTIAL.RESPONSE_VS_STABLE.DISEASE","PARTIAL.RESPONSE_VS_STABLE.DISEASE","PARTIAL.RESPONSE_VS_STABLE.DISEASE","PROGRESSIVE.DISEASE_VS_STABLE.DISEASE","PROGRESSIVE.DISEASE_VS_STABLE.DISEASE","PROGRESSIVE.DISEASE_VS_STABLE.DISEASE","PROGRESSIVE.DISEASE_VS_STABLE.DISEASE","PROGRESSIVE.DISEASE_VS_STABLE.DISEASE"],["LRRD1","OGFRL1","PLAC8","PTGS2","RNF138","LRRD1","OGFRL1","PLAC8","PTGS2","RNF138","LRRD1","OGFRL1","PLAC8","PTGS2","RNF138","LRRD1","OGFRL1","PLAC8","PTGS2","RNF138","LRRD1","OGFRL1","PLAC8","PTGS2","RNF138","LRRD1","OGFRL1","PLAC8","PTGS2","RNF138"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>baseMean<\/th>\n      <th>log2FoldChange<\/th>\n      <th>lfcSE<\/th>\n      <th>stat<\/th>\n      <th>pvalue<\/th>\n      <th>padj<\/th>\n      <th>comparison_n_vs_d<\/th>\n      <th>gene<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"Blfrtip","buttons":["copy","csv","excel","pdf","print"],"lengthMenu":[[10,25,50,-1],["10","25","50","All"]],"columnDefs":[{"className":"dt-right","targets":[0,1,2,3,4,5]}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
-<p><img src="figure/00_exploratory_analysis.Rmd/normalised_data-1.png" width="1800" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-normalised_data-1">
-Past versions of normalised_data-1.png
-</button>
-</p>
-<div id="fig-normalised_data-1" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/dimadatascience/preserve/blob/ad5aaabe58424d613a19513e0028187020224d67/docs/figure/00_exploratory_analysis.Rmd/normalised_data-1.png" target="_blank">ad5aaab</a>
-</td>
-<td>
-Yinxiu Zhan
-</td>
-<td>
-2025-01-27
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
+<p><img src="figure/00_exploratory_analysis.Rmd/signature_boxplot-1.png" width="1800" style="display: block; margin: auto;" /></p>
 </div>
 </div>
 <div id="hotscore" class="section level1">
@@ -939,6 +807,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/dimadatascience/preserve/blob/7a1f38bb2e218d707b58d6858af1bfc032036961/docs/figure/00_exploratory_analysis.Rmd/hotscore_plot-1.png" target="_blank">7a1f38b</a>
+</td>
+<td>
+Yinxiu Zhan
+</td>
+<td>
+2025-01-27
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/dimadatascience/preserve/blob/ad5aaabe58424d613a19513e0028187020224d67/docs/figure/00_exploratory_analysis.Rmd/hotscore_plot-1.png" target="_blank">ad5aaab</a>
@@ -979,6 +858,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/dimadatascience/preserve/blob/7a1f38bb2e218d707b58d6858af1bfc032036961/docs/figure/00_exploratory_analysis.Rmd/hotscore_plot-2.png" target="_blank">7a1f38b</a>
+</td>
+<td>
+Yinxiu Zhan
+</td>
+<td>
+2025-01-27
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/dimadatascience/preserve/blob/ad5aaabe58424d613a19513e0028187020224d67/docs/figure/00_exploratory_analysis.Rmd/hotscore_plot-2.png" target="_blank">ad5aaab</a>
 </td>
 <td>
@@ -1015,6 +905,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/dimadatascience/preserve/blob/7a1f38bb2e218d707b58d6858af1bfc032036961/docs/figure/00_exploratory_analysis.Rmd/hotscore_plot-3.png" target="_blank">7a1f38b</a>
+</td>
+<td>
+Yinxiu Zhan
+</td>
+<td>
+2025-01-27
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/dimadatascience/preserve/blob/ad5aaabe58424d613a19513e0028187020224d67/docs/figure/00_exploratory_analysis.Rmd/hotscore_plot-3.png" target="_blank">ad5aaab</a>
