@@ -279,7 +279,7 @@ The PCA plot below shows samples colored by response status. Unfortunately, ther
 plotPCA(rld)
 ```
 
-Below is the heatmap displaying the z-scores of gene expression. Genes have been clustered based on functionality and response.
+Below is the heatmap displaying the z-scores of gene expression. Genes have been clustered based on functionality and response. The heatmap in pdf can be found [here](https://github.com/dimadatascience/preserve/tree/main/output)
 
 
 ```{r}
@@ -327,6 +327,27 @@ Heatmap(
 )
 ```
 
+```{r include=FALSE}
+pdf("/hpcnfs/scratch/DIMA/zhan/chiocca/micaela/preserve/output/heatmap4paper.pdf")
+Heatmap(
+  matrix = counts[, ordering],
+  col = circlize::colorRamp2(seq(rng[1], rng[2], len =
+                                   9), brewer.pal(9, "RdBu")),
+  name = "Expression across patients",
+  cluster_rows = TRUE,
+  cluster_columns = FALSE,
+  show_column_names = FALSE,
+  show_row_names = FALSE,
+  width = unit(4, "inches"),
+  show_heatmap_legend = TRUE,
+  use_raster = FALSE,
+  raster_device = "png",
+  raster_quality = 1,
+  top_annotation = column_ha,
+  km = 3
+)
+dev.off()
+```
 
 The transcriptomic profiles of responsive and resistant samples appear to be highly similar, with minimal differences observed. Below is a table highlighting the few differentially expressed genes identified between the two groups.
 
