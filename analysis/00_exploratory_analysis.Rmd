@@ -147,7 +147,7 @@ Below are the parameters used for differential gene expression analysis and filt
 - Minimum sample threshold: 3 (a gene must have at least 1 read in a minimum of 3 samples)
 - min reads: 
 
-```{r parameters, echo=TRUE}
+```{r parameters}
 rdata_file="/hpcnfs/scratch/DIMA/zhan/chiocca/micaela/230913_rnaseq/results/star_salmon/deseq2_qc/deseq2.dds.RData"
 samples_info_file = "/hpcnfs/scratch/DIMA/zhan/chiocca/micaela/230913_rnaseq/samples_files/samples_info.txt"
 qvalue=0.1
@@ -265,7 +265,7 @@ coldata = out[["coldata"]]
 
 Below is the PCA plot, with samples colored based on functionality. While clear separation between functional and non-functional samples is not evident, there is a slight shift toward the right for non-functional samples, suggesting potential trends worth further exploration.
 
-```{r}
+```{r pca_functionality}
 res = na.omit(res)
 
 rld$functionality[rld$functionality == "X1"] = "not_functional"
@@ -275,7 +275,7 @@ plotPCA(rld, intgroup = "functionality")
 
 The PCA plot below shows samples colored by response status. Unfortunately, there is no clear separation between responders and non-responders, indicating that PCA alone is insufficient to distinguish response groups in this dataset.
 
-```{r}
+```{r pca_response}
 plotPCA(rld)
 ```
 
@@ -307,7 +307,7 @@ rng <- quantile(counts, c(.025, 0.975))
 column_ha = HeatmapAnnotation(condition = column_names[ordering])
 ```
 
-```{r}
+```{r heatmap_functionality_response, fig.width=10}
 Heatmap(
   matrix = counts[, ordering],
   col = circlize::colorRamp2(seq(rng[1], rng[2], len =
@@ -378,6 +378,10 @@ tmp = melt(tmp)
 tmp$response = (response[tmp$X2])
 tmp$response1 = "RESISTANT"
 tmp$response1[grepl("RESPONSE",tmp$response)] = "RESPONSIVE"
+
+```
+
+```{r signature_boxplot}
 ggplot(data = tmp, aes(x=X1, y=(value), fill = response1)) + geom_boxplot() + ylab("Expression value (vst normalised)") + xlab("gene")
 ```
 
