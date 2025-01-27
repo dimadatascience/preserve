@@ -1,0 +1,15 @@
+---
+title: "Home"
+site: workflowr::wflow_site
+output:
+  workflowr::wflow_html:
+    toc: false
+editor_options:
+  chunk_output_type: console
+---
+
+This  website contains the analysis of RNAseq sample from Chiocca group, Preserve project
+
+# Shallow sequencing 
+
+- [1-Paper PRESERVE](00_exploratory_analysis.html)
