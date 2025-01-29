@@ -287,7 +287,7 @@ functionality[functionality == "X0"] = "functional"
 functionality[functionality == "X1"] = "not_functional"
 
 response_functionality = response
-response_functionality = paste0(functionality[names(response_functionality)], "_" , response)
+response_functionality = functionality[names(response_functionality)] # paste0(functionality[names(response_functionality)], "_" , response)
 names(response_functionality) = names(response)
 
 res = na.omit(res)
@@ -307,6 +307,8 @@ rng <- quantile(counts, c(.025, 0.975))
 column_ha = HeatmapAnnotation(condition = column_names[ordering])
 ```
 
+
+
 ```{r heatmap_functionality_response, fig.width=10}
 Heatmap(
   matrix = counts[, ordering],
@@ -314,7 +316,7 @@ Heatmap(
                                    9), brewer.pal(9, "RdBu")),
   name = "Expression across patients",
   cluster_rows = TRUE,
-  cluster_columns = FALSE,
+  cluster_columns = TRUE,
   show_column_names = FALSE,
   show_row_names = FALSE,
   width = unit(4, "inches"),
@@ -323,6 +325,7 @@ Heatmap(
   raster_device = "png",
   raster_quality = 1,
   top_annotation = column_ha,
+  column_split = column_names[ordering],
   km = 3
 )
 ```
@@ -337,7 +340,7 @@ Heatmap(
                                    9), brewer.pal(9, "RdBu")),
   name = "Expression across patients",
   cluster_rows = TRUE,
-  cluster_columns = FALSE,
+  cluster_columns = TRUE,
   show_column_names = FALSE,
   show_row_names = FALSE,
   width = unit(4, "inches"),
@@ -346,6 +349,7 @@ Heatmap(
   raster_device = "png",
   raster_quality = 1,
   top_annotation = column_ha,
+  column_split = column_names[ordering],
   km = 3
 )
 dev.off()
