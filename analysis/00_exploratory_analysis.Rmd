@@ -320,7 +320,7 @@ column_ha = HeatmapAnnotation(condition = column_names[ordering])
 
 
 
-```{r heatmap_functionality_response}
+```{r heatmap_functionality_response, fig.width=12}
 Heatmap(
   matrix = counts[1:100, ordering],
   col = circlize::colorRamp2(seq(rng[1], rng[2], len =
