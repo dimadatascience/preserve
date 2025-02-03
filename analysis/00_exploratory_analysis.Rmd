@@ -267,10 +267,21 @@ Below is the PCA plot, with samples colored based on functionality. While clear 
 
 ```{r pca_functionality}
 res = na.omit(res)
-
 rld$functionality[rld$functionality == "X1"] = "not_functional"
 rld$functionality[rld$functionality == "X0"] = "functional"
 plotPCA(rld, intgroup = "functionality")
+```
+
+```{r}
+pdf("/hpcnfs/scratch/DIMA/zhan/chiocca/micaela/preserve/output/pca_functionality.pdf")
+plotPCA(rld, intgroup = "functionality")
+dev.off()
+
+pdf("/hpcnfs/scratch/DIMA/zhan/chiocca/micaela/preserve/output/pca_ic.pdf")
+plotPCA(rld)
+dev.off()
+
+
 ```
 
 The PCA plot below shows samples colored by response status. Unfortunately, there is no clear separation between responders and non-responders, indicating that PCA alone is insufficient to distinguish response groups in this dataset.
@@ -309,9 +320,9 @@ column_ha = HeatmapAnnotation(condition = column_names[ordering])
 
 
 
-```{r heatmap_functionality_response, fig.width=10}
+```{r heatmap_functionality_response}
 Heatmap(
-  matrix = counts[, ordering],
+  matrix = counts[1:100, ordering],
   col = circlize::colorRamp2(seq(rng[1], rng[2], len =
                                    9), brewer.pal(9, "RdBu")),
   name = "Expression across patients",
@@ -325,7 +336,7 @@ Heatmap(
   raster_device = "png",
   raster_quality = 1,
   top_annotation = column_ha,
-  column_split = column_names[ordering],
+  # column_split = column_names[ordering],
   km = 3
 )
 ```
@@ -333,7 +344,7 @@ Heatmap(
 
 
 ```{r include=FALSE}
-pdf("/hpcnfs/scratch/DIMA/zhan/chiocca/micaela/preserve/output/heatmap4paper.pdf")
+pdf("/hpcnfs/scratch/DIMA/zhan/chiocca/micaela/preserve/output/heatmap4paper.pdf", width = 10)
 Heatmap(
   matrix = counts[, ordering],
   col = circlize::colorRamp2(seq(rng[1], rng[2], len =
@@ -349,7 +360,7 @@ Heatmap(
   raster_device = "png",
   raster_quality = 1,
   top_annotation = column_ha,
-  column_split = column_names[ordering],
+  # column_split = column_names[ordering],
   km = 3
 )
 dev.off()
