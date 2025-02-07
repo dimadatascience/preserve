@@ -253,6 +253,8 @@ The list of contrast is shown below
 mydatatable(data.frame(contrasts = contrasts))
 ```
 
+
+
 ```{r mild_filtering_analysis, include=FALSE}
 mreads = round(nrow(samples_info) / 2) ## filter genes without at least mreads reads in all condition combined
 out = mydeseq2(dds, min_reads = mreads, min_sample = min_sample, conditions= unique(response), test="Wald")
@@ -451,24 +453,30 @@ table(hotscores[,c("condition", "hot")])
 ```
 
 ```{r hotscore_plot}
+functionality[functionality == "X0"] = "functional"
+functionality[functionality == "X1"] = "not_functional"
 
 #pdf("hotscore197patients4susanna.pdf")
-hotscores$condition = response[rownames(hotscores)]
-ggplot(data = hotscores, aes(x=condition, y=hotscore)) + geom_boxplot() + theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+hotscores$response = response[rownames(hotscores)]
+hotscores$functionality = as.factor(functionality[rownames(hotscores)])
+ggplot(data = hotscores, aes(x=response, y=hotscore, col=functionality)) + geom_boxplot() + theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
 
-hotscores$condition[hotscores$condition %in% c("STABLE.DISEASE", "PROGRESSIVE.DISEASE")] = "RESISTANT"
-hotscores$condition = response[rownames(hotscores)]
-ggplot(data = hotscores, aes(x=condition, y=hotscore)) + geom_boxplot() + theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+hotscores$response[hotscores$response %in% c("STABLE.DISEASE", "PROGRESSIVE.DISEASE")] = "RESISTANT"
+ggplot(data = hotscores, aes(x=response, y=hotscore, col=functionality)) + geom_boxplot() + theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
 #dev.off()
 
 hotscores$hot = "hot"
 hotscores$hot[hotscores$hotscore<0] = "cold"
 
-
-hotscores$condition = functionality[rownames(hotscores)]
-ggplot(data = hotscores, aes(x=condition, y=hotscore)) + geom_boxplot() + theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) + xlab("Functionality")
+ggplot(data = hotscores, aes(x=functionality, y=hotscore)) + geom_boxplot() + theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) + xlab("Functionality")
 ```
 
+```{r}
+pdf("/hpcnfs/scratch/DIMA/zhan/chiocca/micaela/preserve/output/hotscores.pdf")
+ggplot(data = hotscores, aes(x=response, y=hotscore, col=functionality)) + geom_boxplot() + theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+ggplot(data = hotscores, aes(x=functionality, y=hotscore)) + geom_boxplot() + theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) + xlab("Functionality")
+dev.off()
+```
 
 ```{r}
 myfunc = function(dds, min_reads, conditions, min_sample = 5, ...){
