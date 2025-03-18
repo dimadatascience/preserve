@@ -19,7 +19,8 @@ knitr::opts_chunk$set(echo       = FALSE,
                       fig.align  = 'center',
                       fig.width  = 6,
                       fig.height = 6,
-                      dpi =        300)
+                      dpi =        300,
+                      dev = "pdf")
 ```
 
 
@@ -274,6 +275,8 @@ rld$functionality[rld$functionality == "X0"] = "functional"
 plotPCA(rld, intgroup = "functionality")
 ```
 
+
+
 ```{r}
 pdf("/hpcnfs/scratch/DIMA/zhan/chiocca/micaela/preserve/output/pca_functionality.pdf")
 plotPCA(rld, intgroup = "functionality")
@@ -317,14 +320,18 @@ colnames(counts) = colnames(assay(rld))
 column_names = response_functionality[colnames(assay(rld))]
 ordering = order(column_names)
 rng <- quantile(counts, c(.025, 0.975))
-column_ha = HeatmapAnnotation(condition = column_names[ordering])
+
+colors_annotation = list(condition = c(COMPLETE.RESPONSE_functional="#ff9687",  PARTIAL.RESPONSE_functional="#683D62", PARTIAL.RESPONSE_not_functional="#197A8B", PROGRESSIVE.DISEASE_not_functional="#D8AE48", STABLE.DISEASE_functional="#A47864", STABLE.DISEASE_not_functional="#D16F52", COMPLETE.RESPONSE_not_functional="#CA80B1"))
+#colors_annotation = as.list(c("red", "blue", "green", "yellow", "grey", "brown", "black"))
+#names(colors_annotation) = names(table(column_names[ordering]))
+column_ha = HeatmapAnnotation(condition = column_names[ordering], col=colors_annotation)
 ```
 
 
 
 ```{r heatmap_functionality_response, fig.width=12}
 Heatmap(
-  matrix = counts[, ordering],
+  matrix = counts[1:100, ordering],
   col = circlize::colorRamp2(seq(rng[1], rng[2], len =
                                    9), brewer.pal(9, "RdBu")),
   name = "Expression across patients",
