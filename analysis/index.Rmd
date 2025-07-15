@@ -13,3 +13,4 @@ This  website contains the analysis of RNAseq sample from Chiocca group, Preserv
 # Shallow sequencing 
 
 - [1-Paper PRESERVE](00_exploratory_analysis.html)
+- [2-Michi paper](01_paper_michi.html)

@@ -26,7 +26,7 @@ knitr::opts_chunk$set(echo       = FALSE,
 
 ```{r libraries}
 library("DESeq2")
-library(QuasR)
+# library(QuasR)
 library(rtracklayer)
 library(ComplexHeatmap)
 library(RColorBrewer)
@@ -280,10 +280,14 @@ plotPCA(rld, intgroup = "functionality")
 ```{r}
 pdf("/hpcnfs/scratch/DIMA/zhan/chiocca/micaela/preserve/output/pca_functionality.pdf")
 plotPCA(rld, intgroup = "functionality")
+tmp = plotPCA(rld, intgroup = "functionality", returnData=TRUE)
+write.csv(tmp, file="pca_functioanlity_paper.csv", quote=F, row.names = F)
 dev.off()
 
 pdf("/hpcnfs/scratch/DIMA/zhan/chiocca/micaela/preserve/output/pca_ic.pdf")
 plotPCA(rld)
+tmp = plotPCA(rld, returnData=TRUE)
+write.csv(tmp, file="pca_response_paper.csv", quote=F, row.names = F)
 dev.off()
 
 
@@ -302,9 +306,8 @@ Below is the heatmap displaying the z-scores of gene expression. Genes have been
 functionality[functionality == "X0"] = "functional"
 functionality[functionality == "X1"] = "not_functional"
 
-response_functionality = response
-response_functionality = paste0(response, "_", functionality[names(response_functionality)])
-names(response_functionality) = names(response)
+response_functionality = paste0(colData(rld)$condition, "_", colData(rld)$functionality)
+names(response_functionality) = names(colData(rld))
 
 res = na.omit(res)
 select = which((res)$padj < qvalue &
@@ -469,6 +472,7 @@ hotscores$functionality = as.factor(functionality[rownames(hotscores)])
 ggplot(data = hotscores, aes(x=response, y=hotscore, col=functionality)) + geom_boxplot() + theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
 
 hotscores$response[hotscores$response %in% c("STABLE.DISEASE", "PROGRESSIVE.DISEASE")] = "RESISTANT"
+write.csv(hotscores, file="hotscores.csv", quote=F)
 ggplot(data = hotscores, aes(x=response, y=hotscore, col=functionality)) + geom_boxplot() + theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
 #dev.off()
 
