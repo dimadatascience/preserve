@@ -381,6 +381,53 @@ column_ha = HeatmapAnnotation(condition = column_names[ordering], col=colors_ann
 ```
 
 
+```{r heatmap_functionality_response, fig.width=12}
+Heatmap(
+  matrix = counts[1:100, ordering],
+  col = circlize::colorRamp2(seq(rng[1], rng[2], len =
+                                   9), brewer.pal(9, "RdBu")),
+  name = "Expression across patients",
+  cluster_rows = TRUE,
+  cluster_columns = TRUE,
+  show_column_names = FALSE,
+  show_row_names = FALSE,
+  width = unit(4, "inches"),
+  show_heatmap_legend = TRUE,
+  use_raster = FALSE,
+  raster_device = "png",
+  raster_quality = 1,
+  top_annotation = column_ha,
+  # column_split = column_names[ordering],
+  km = 3
+)
+```
+
+
+
+```{r include=FALSE}
+pdf("/hpcnfs/scratch/DIMA/zhan/chiocca/micaela/preserve/output/heatmap4paper_michi_paper.pdf", width = 10)
+Heatmap(
+  matrix = counts[, ordering],
+  col = circlize::colorRamp2(seq(rng[1], rng[2], len =
+                                   9), brewer.pal(9, "RdBu")),
+  name = "Expression across patients",
+  cluster_rows = TRUE,
+  cluster_columns = TRUE,
+  show_column_names = FALSE,
+  show_row_names = FALSE,
+  width = unit(4, "inches"),
+  show_heatmap_legend = TRUE,
+  use_raster = FALSE,
+  raster_device = "png",
+  raster_quality = 1,
+  top_annotation = column_ha,
+  # column_split = column_names[ordering],
+  km = 3
+)
+dev.off()
+```
+
+
 ```{r heatmap_functionality, fig.width=12}
 pdf("/hpcnfs/scratch/DIMA/zhan/chiocca/micaela/preserve/output/heatmap4paper_functionality_michi_paper.pdf", width = 10)
 colors_annotation = list(condition = c(functional="#F8766D",  not_functional="#00BFC4"))
@@ -433,52 +480,6 @@ Heatmap(
 dev.off()
 ```
 
-
-```{r heatmap_functionality_response, fig.width=12}
-Heatmap(
-  matrix = counts[1:100, ordering],
-  col = circlize::colorRamp2(seq(rng[1], rng[2], len =
-                                   9), brewer.pal(9, "RdBu")),
-  name = "Expression across patients",
-  cluster_rows = TRUE,
-  cluster_columns = TRUE,
-  show_column_names = FALSE,
-  show_row_names = FALSE,
-  width = unit(4, "inches"),
-  show_heatmap_legend = TRUE,
-  use_raster = FALSE,
-  raster_device = "png",
-  raster_quality = 1,
-  top_annotation = column_ha,
-  # column_split = column_names[ordering],
-  km = 3
-)
-```
-
-
-
-```{r include=FALSE}
-pdf("/hpcnfs/scratch/DIMA/zhan/chiocca/micaela/preserve/output/heatmap4paper_michi_paper.pdf", width = 10)
-Heatmap(
-  matrix = counts[, ordering],
-  col = circlize::colorRamp2(seq(rng[1], rng[2], len =
-                                   9), brewer.pal(9, "RdBu")),
-  name = "Expression across patients",
-  cluster_rows = TRUE,
-  cluster_columns = TRUE,
-  show_column_names = FALSE,
-  show_row_names = FALSE,
-  width = unit(4, "inches"),
-  show_heatmap_legend = TRUE,
-  use_raster = FALSE,
-  raster_device = "png",
-  raster_quality = 1,
-  top_annotation = column_ha,
-  # column_split = column_names[ordering],
-  km = 3
-)
-dev.off()
-```
 
 The transcriptomic profiles of responsive and resistant samples appear to be highly similar, with minimal differences observed. Below is a table highlighting the few differentially expressed genes identified between the two groups.
 
