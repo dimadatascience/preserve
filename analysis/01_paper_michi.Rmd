@@ -38,6 +38,7 @@ library(reshape)
 library(plotly)
 library(htmlwidgets)
 library(GSVA)
+library(scater)
 ```
 
 
@@ -52,6 +53,7 @@ mydeseq2 = function(dds, min_reads, conditions, min_sample = 5, ...){
   coldata$condition = as.factor(coldata$condition)
   rownames(coldata)<-colnames(counts)
   coldata$functionality = functionality[colData(dds)$sample]
+    coldata$batch = batch[colData(dds)$sample]
   
   
   ##Performing deseq2
@@ -151,6 +153,7 @@ Below are the parameters used for differential gene expression analysis and filt
 ```{r parameters}
 rdata_file="/hpcnfs/scratch/DIMA/zhan/chiocca/micaela/230913_rnaseq/results/star_salmon/deseq2_qc/deseq2.dds.RData"
 samples_info_file = "/hpcnfs/scratch/DIMA/zhan/chiocca/micaela/230913_rnaseq/samples_files/samples_info.txt"
+batch_info_file = "/hpcnfs/data/DIMA/preserve/batch_information.csv"
 qvalue=0.1
 logfc=log2(1)
 min_sample = 3 # minimum number of samples where the gene needs to have at least 1 read
@@ -179,6 +182,10 @@ load(rdata_file)
 samples_info = read.delim(samples_info_file, sep="\t", header=T)
 samples_info = samples_info[make.names(samples_info$ID.e.CRF) %in% colnames(dds),]
 samples_info = samples_info[!is.na(samples_info$Status.of.disease.after.IC),]
+batch_info = read.csv(batch_info_file, header=FALSE)
+colnames(batch_info) = c("sampleid", "batch")
+samples_info = merge(samples_info, batch_info, by=1)
+
 
 exclude = c(
   "C.001.070",
@@ -275,6 +282,10 @@ names(ischeme) = make.names(samples_info$ID.e.CRF)
 functionality = make.names(samples_info$LEDFS..0.lar.funzionante..1.disfunzione.)
 names(functionality) = make.names(samples_info$ID.e.CRF)
 
+# assign batch to sample
+batch = make.names(samples_info$batch)
+names(batch) = make.names(samples_info$ID.e.CRF)
+
 # remove TRNA
 pattern_remove_gene = "^TRNA"
 keep = rownames(dds)[!grepl(pattern_remove_gene, rownames(dds))]
@@ -317,7 +328,6 @@ df_all_genes = out[["df_all_genes"]]
 coldata = out[["coldata"]]
 ```
 
-
 Below is the PCA plot, with samples colored based on functionality. While clear separation between functional and non-functional samples is not evident, there is a slight shift toward the right for non-functional samples, suggesting potential trends worth further exploration.
 
 ```{r pca_functionality}
@@ -342,7 +352,11 @@ tmp = plotPCA(rld, returnData=TRUE)
 write.csv(tmp, file="pca_response_paper_michi_paper.csv", quote=F, row.names = F)
 dev.off()
 
-
+pdf("/hpcnfs/scratch/DIMA/zhan/chiocca/micaela/preserve/output/pca_batch_michi_paper.pdf")
+plotPCA(rld, intgroup = "batch")
+tmp = plotPCA(rld, intgroup = "batch", returnData=TRUE)
+write.csv(tmp, file="pca_batch_paper_michi_paper.csv", quote=F, row.names = F)
+dev.off()
 ```
 
 The PCA plot below shows samples colored by response status. Unfortunately, there is no clear separation between responders and non-responders, indicating that PCA alone is insufficient to distinguish response groups in this dataset.
@@ -693,7 +707,4 @@ ggplot(data = alignments_stats, aes(x=qc, y=Uniquely.mapped)) + geom_boxplot() +
 ggplot(data = percentage_overepresented, aes(x=qc, y=percentage)) + geom_boxplot() + xlab("Sample quality") + ylab("Fraction over represented reads")
 dev.off()
 ```
-
-
-
 
