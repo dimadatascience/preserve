@@ -599,6 +599,12 @@ hotscores$hot[hotscores$hotscore<0] = "cold"
 ggplot(data = hotscores, aes(x=functionality, y=hotscore)) + geom_boxplot() + theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) + xlab("Functionality")
 ```
 
+Below we present the table of hotscores
+
+```{r}
+mydatatable(hotscores)
+```
+
 ```{r}
 pdf("/hpcnfs/scratch/DIMA/zhan/chiocca/micaela/preserve/output/hotscores_michi_paper.pdf")
 ggplot(data = hotscores, aes(x=response, y=hotscore, col=functionality)) + geom_boxplot() + theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
